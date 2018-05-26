@@ -1,0 +1,36 @@
+<div *ngIf="isInvalidRoute">
+  <app-not-found></app-not-found>
+</div>
+<div *ngIf="!isInvalidRoute">
+  <app-header [back]="back"></app-header>
+  <app-current-header [current]="current" (initAddFolder)="initAddFolder($event)"></app-current-header>
+  <div class="clickable listing header" (click)="setIncFlag()">
+    <a href="javascript:void(0)">
+      Name 
+      <i class="fas" [ngClass]="{
+        'fa-caret-up': incOrDec === 'inc',
+        'fa-caret-down': incOrDec === 'dec',
+        'fa-sort': !incOrDec
+      }"></i>
+    </a>
+  </div>
+  <div *ngIf="showForm" class="listing item form-container">
+    <form [formGroup]="form" (ngSubmit)="submit($event)">
+      <div class="row">
+        <div class="col-12 ">
+          <div class="form-group">
+            <input type="text" class="form-control" formControlName="display" placeholder="Folder name..."/>
+          </div>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary mb-2" [disabled]="!this.form.valid">Add</button>
+          <button type="button" (click)="cancelAdd()" class="btn mb-2">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div [routerLink]="['/'+item.name]" class="folder clickable listing item" *ngFor="let item of currentChildren | orderBy: 'display': incOrDec">
+    <app-expandable (removeItem)="removeFolder($event)" [folder]="item"></app-expandable>
+  </div>
+  <div class="listing item info" *ngIf="!currentChildren || currentChildren.length <= 0">No folders here</div>
+</div>

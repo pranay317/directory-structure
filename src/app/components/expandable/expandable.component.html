@@ -1,0 +1,14 @@
+<div class="clickable d-flex align-items-center justify-content-between" (click)="toggleExpanded($event)">
+  <a [routerLink]="['/'+folder.name]">
+    <i class="fas" [ngClass]="{'fa-folder': !isExpanded, 'fa-folder-open': isExpanded}"></i> {{folder.display}}
+  </a>
+  <div><i class="far fa-trash-alt clickable" (click)="remove($event)"></i></div>
+</div>
+<div class="inner-expandable" *ngIf="isExpanded">
+  <div class="listing-item" *ngFor="let item of children">
+    <app-expandable (removeItem)="removeFolder($event)" [folder]="item"></app-expandable>
+  </div>
+  <div class="info" *ngIf="!children || children.length <= 0">
+    No folders here
+  </div>
+</div>

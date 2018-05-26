@@ -1,0 +1,20 @@
+.listing {
+    padding: 10px;
+    border-top: 1px solid #EEE;
+    border-bottom: 1px solid #EEE;
+    // .header {
+
+    // }
+    &.item {
+        border-bottom: none;
+        &:hover {
+            background-color: #EEE;
+        }
+        &.info {
+            color: #999;
+        }
+        &.form-container {
+            padding: 15px 15px;
+        }
+    }
+}

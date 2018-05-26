@@ -1,0 +1,10 @@
+<div class="app-title d-flex align-items-center ">
+  <div class="title-item" *ngIf="back">
+    <a [routerLink]="['/'+back.name]">
+      <i class="fas fa-angle-left"></i> {{back.display}}
+    </a>
+  </div>
+  <h5 class="title-item d-flex align-items-center">
+    <div>Folders</div>
+  </h5>
+</div>

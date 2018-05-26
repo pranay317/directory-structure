@@ -1,0 +1,10 @@
+<div class="app-title d-flex align-items-center justify-content-between row">
+  <h5 class="title-item d-flex align-items-center">
+    <div style="white-space: nowrap;"><i class="fas fa-folder-open"></i> {{current && current.display || '/'}}</div>
+    <app-breadcrumbs [current]="current"></app-breadcrumbs>
+  </h5>
+  <h4 title="add sub-folder clickable">
+    <i class="far fa-plus-square clickable" (click)="notifyInitAddFolder()"></i>
+    <!-- <button type="button" class="btn"> Add Folder</button> -->
+  </h4>
+</div>
